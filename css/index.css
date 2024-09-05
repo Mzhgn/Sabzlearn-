@@ -54,7 +54,7 @@ i {
 }
 .main-header__link {
   display: flex;
-  align-items: center;
+  align-content: center;
   justify-content: center;
   position: relative;
   color: #7f8187;
@@ -259,4 +259,35 @@ i {
 .courses-header__icon {
   margin-right: 0.5rem;
   font-size: 1.5rem;
+}
+
+/*****Helper styles****** */
+.title {
+  font-size: 2.3rem;
+  color: #444446;
+  font-weight: bold;
+  line-height: 1.2;
+  position: relative;
+}
+
+.title::before {
+  content: "";
+  position: absolute;
+  right: -1rem;
+  height: 5.2rem;
+  width: 0.4rem;
+  background-color: var(--primary-color);
+  border-radius: 5rem;
+  transform: rotate(8deg);
+}
+
+.title::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 250px;
+  height: 60%;
+  background-color: rgba(43, 206, 86, 0.2);
 }
