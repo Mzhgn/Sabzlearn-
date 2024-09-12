@@ -413,3 +413,7 @@ i {
   font-size: 1.8rem;
   font-weight: bold;
 }
+/* popular section */
+.popular {
+  margin: 5rem 0;
+}
