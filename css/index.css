@@ -437,3 +437,39 @@ i {
 .swiper-pagination {
   margin: -2rem 0;
 }
+/* Articles section */
+.article {
+  margin: 4rem 0;
+}
+.article-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.article-header__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-header__text {
+  color: #9c9c9c;
+  font-size: 1.5rem;
+}
+
+.article-header__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+.article-header__link:hover {
+  color: var(--white-color);
+}
+
+.article-header__icon {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
