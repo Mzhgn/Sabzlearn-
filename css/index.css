@@ -505,7 +505,7 @@ i {
   border-radius: 0.5rem;
   transition: all 400ms ease;
 }
-..article-card__btn:hover {
+.article-card__btn:hover {
   color: var(--white-color);
   background-color: var(--primary-color);
 }
