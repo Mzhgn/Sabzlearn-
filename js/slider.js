@@ -1,6 +1,10 @@
 const swiper = new Swiper(".swiper-container", {
   speed: 800,
   loop: true,
+  autoplay: {
+    delay: 3000,
+  },
+
   breakpoints: {
     576: {
       slidesPerView: 1,
