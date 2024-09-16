@@ -56,9 +56,9 @@
 }
 
 /* Course info section */
-.course-info {
+/* .course-info {
   margin-bottom: 6rem;
-}
+} */
 .course-info__link {
   font-size: 1.2rem;
   color: var(--primary-color);
@@ -415,4 +415,27 @@
 .course-ino__topics-text {
   font-size: 1.5rem;
   color: #7d7e7f;
+}
+.course-info__related {
+  font-size: 1.8rem;
+  display: block;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+}
+.course-info__lists-item {
+  margin-bottom: 2rem;
+}
+.course-info__lists-link {
+  display: flex;
+  align-items: center;
+}
+.course-info__lists-img {
+  width: 70px;
+  border-radius: 0.5rem;
+}
+.course-info__courses-title {
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+  color: #8d8d8d;
+  font-weight: bold;
 }
