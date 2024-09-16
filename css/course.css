@@ -6,6 +6,7 @@
 @import "./defaults.css";
 @import "./footer.css";
 @import "./course-box.css";
+@import "./courseinfoSidebar.css";
 
 /* Course info section */
 /* .course-info {
@@ -260,17 +261,7 @@
 }
 
 /* courses information section(side bar) */
-.courses-info {
-  top: 2rem;
-  position: sticky;
-}
-.course-info {
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  padding: 2.2rem;
-  border: 1px solid #f2f2f2;
-  box-shadow: 0 0 13ox 1px rgba(70, 72, 77, 0.08);
-}
+
 .course-info__register {
   text-align: center;
   background-color: #1fbd50;
@@ -358,36 +349,4 @@
   border: 1px solid #dcdcdc;
   color: #a7a7a7;
   border-radius: 0.5rem;
-}
-.course-ino__topics-title {
-  display: block;
-  font-size: 1.8rem;
-  color: var(--dark-color);
-}
-.course-ino__topics-text {
-  font-size: 1.5rem;
-  color: #7d7e7f;
-}
-.course-info__related {
-  font-size: 1.8rem;
-  display: block;
-  color: var(--dark-color);
-  margin-bottom: 1.5rem;
-}
-.course-info__lists-item {
-  margin-bottom: 2rem;
-}
-.course-info__lists-link {
-  display: flex;
-  align-items: center;
-}
-.course-info__lists-img {
-  width: 70px;
-  border-radius: 0.5rem;
-}
-.course-info__courses-title {
-  font-size: 1.4rem;
-  margin-right: 0.5rem;
-  color: #8d8d8d;
-  font-weight: bold;
 }

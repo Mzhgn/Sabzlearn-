@@ -6,4 +6,33 @@
 @import "./defaults.css";
 @import "./footer.css";
 @import "./course-box.css";
+@import "./courseinfoSidebar.css";
 @import "./breadcrumb.css";
+
+/* sidebar styles */
+.sidebar-articles__lists {
+  margin-top: 2rem;
+}
+.sidebar-articles-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+  padding: 0.9rem 1.3rem 0.9rem 1rem;
+  transition: all 400ms ease;
+}
+.sidebar-articles-item:hover {
+  padding-right: 2rem;
+  background-color: #f8f9fa;
+}
+.sidebar-articles-item:hover .sidebar-articles__icon {
+  color: var(--primary-color);
+}
+.sidebar-articles__icon {
+  font-size: 1.4rem;
+  color: #909aa7;
+  transition: all 400ms ease;
+}
+.sidebar-articles-link {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+}
