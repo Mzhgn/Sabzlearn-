@@ -407,3 +407,12 @@
   color: #a7a7a7;
   border-radius: 0.5rem;
 }
+.course-ino__topics-title {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--dark-color);
+}
+.course-ino__topics-text {
+  font-size: 1.5rem;
+  color: #7d7e7f;
+}
