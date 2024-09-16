@@ -386,3 +386,24 @@
   font-size: 1.4rem;
   margin-right: 1rem;
 }
+.course-info__url-link {
+  display: flex;
+  align-items: center;
+  color: #7b868a;
+}
+.course-info__url-icon {
+  font-size: 2rem;
+}
+.course-info__url-text {
+  font-size: 1.7rem;
+  margin-right: 0.5rem;
+}
+.course-info__url-box {
+  display: block;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid #dcdcdc;
+  color: #a7a7a7;
+  border-radius: 0.5rem;
+}
