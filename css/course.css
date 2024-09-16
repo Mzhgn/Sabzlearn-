@@ -1,4 +1,5 @@
 @import "/css/variables.css";
+@import "/css/helper.css";
 @import "./fonts.css";
 @import "./top-bar.css";
 @import "./navbar.css";
@@ -146,7 +147,7 @@
 .course-progress__bar {
   border-radius: 10rem;
   height: 1rem;
-  border-color: #7b868a;
+  background-color: #ced0d1;
 }
 .progress-bar {
   background-color: #1fbd50;
