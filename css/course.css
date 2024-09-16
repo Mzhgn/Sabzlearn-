@@ -88,3 +88,35 @@
   width: 100%;
   border-radius: 1rem;
 }
+
+/* Main info section */
+.course-boxes__box {
+  display: flex;
+  border-radius: 0.5rem;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 5px 30px rgba(70, 72, 77, 0.08);
+  margin: 1rem 0;
+}
+
+.course-boxes__box-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.course-boxes__box-right-icon {
+  font-size: 3.5rem;
+  color: var(--primary-color);
+}
+.course-boxes__box-left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1.5rem;
+}
+.course-box__box-left-title {
+  font-size: 1.6rem;
+  color: #858c96;
+}
+.course-boxes__box-left--subtitle {
+  color: #7d7e7f;
+  font-size: 1.6rem;
+}
