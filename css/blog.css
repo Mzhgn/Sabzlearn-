@@ -100,3 +100,27 @@
   font-size: 1.7rem;
   color: #7d7d7f;
 }
+
+/* article topic links */
+.article-topics {
+  background-color: #f2f2f2;
+  border-radius: 2rem;
+  padding: 2rem 3rem;
+  margin: 3rem 0;
+}
+.article-topics__title {
+  display: block;
+  color: #333333;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.article-topics__link {
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: #1e83f0;
+}
+.article-topics__link:hover {
+  text-decoration: underline;
+}
