@@ -34,5 +34,5 @@ function counting(max, el) {
 
     el.innerHTML = counter;
     counter++;
-  }, 30);
+  }, 0.5);
 }
