@@ -124,3 +124,39 @@
 .article-topics__link:hover {
   text-decoration: underline;
 }
+.article-secondary-banner {
+  display: block;
+  margin: 0 auto;
+}
+.article-box {
+  margin: 5rem 0;
+}
+.article-box__heading {
+  font-size: 2.4rem;
+  color: #008c25;
+  font-weight: bold;
+  line-height: 1.2;
+}
+.article-box__paragraph {
+  margin: 2rem 0;
+}
+.articl-box__image {
+  display: block;
+  margin: 0 auto;
+}
+
+/* article social media  */
+.article-social-media {
+  display: flex;
+  align-items: center;
+}
+.article-social-media__text {
+  font-size: 1.5rem;
+  color: #7d7e7f;
+}
+.article-social-media__link {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+  color: #7b868a;
+}
