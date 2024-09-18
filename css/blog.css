@@ -160,3 +160,49 @@
   margin: 0.5rem;
   color: #7b868a;
 }
+/* suggested articles */
+.suggested-articles {
+  margin: 4rem 0;
+  padding: 3.5rem 2.5rem;
+  border-radius: 0.5rem;
+  background-color: #f0f2f7;
+}
+
+.suggested-articles-titles {
+  display: flex;
+  align-items: center;
+}
+.suggested-articles-right {
+  position: relative;
+}
+.suggested-articles-left {
+  position: relative;
+  flex-direction: row-reverse;
+}
+
+.suggested-articles-right::before {
+  content: "قدیمی تر";
+  position: absolute;
+  top: -2rem;
+  left: 2rem;
+  font-size: 1.8rem;
+  color: #adb5db;
+  font-weight: bold;
+  transform: rotate(180deg);
+}
+.suggested-articles-left::before {
+  content: "جدیدتر";
+  position: absolute;
+  top: -2rem;
+  right: 2rem;
+  font-size: 1.6rem;
+  color: #adb5db;
+  font-weight: bold;
+}
+.suggested-articles__icon {
+  color: #adb5db;
+}
+.suggested-articles__link {
+  text-align: center;
+  margin: 1rem 2rem;
+}
