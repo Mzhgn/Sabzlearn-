@@ -9,6 +9,12 @@
 @import "./courseinfoSidebar.css";
 @import "./breadcrumb.css";
 
+/* Helper styles */
+.paragraph {
+  font-size: 1.5rem;
+  line-height: 3rem;
+  color: #7d7e7f;
+}
 /* sidebar styles */
 .sidebar-articles__lists {
   margin-top: 2rem;
