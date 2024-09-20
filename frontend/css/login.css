@@ -154,3 +154,9 @@
   margin-right: 2rem;
   margin-top: 1rem;
 }
+
+/* Libraru custom styles */
+.swal-button-container {
+  display: flex;
+  justify-content: center;
+}

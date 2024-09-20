@@ -20,7 +20,24 @@ const register = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(newUserInfo),
-  }).then((res) => res.json().then((result) => console.log(result)));
+  })
+    .then((res) => {
+      if (res.status === 201) {
+        swal({
+          title: "ثبت نام با موفقیت انجام شد!",
+          icon: "success",
+          buttons: "ورود به پنل",
+        });
+      } else if (res.status === 409) {
+        swal({
+          title: "نام کاربری یا ایمیل تکراری است!",
+          icon: "error",
+          buttons: "تصحیح اطلاعات",
+        });
+      }
+      return res.json();
+    })
+    .then((result) => console.log(result));
 };
 
 export { register };
