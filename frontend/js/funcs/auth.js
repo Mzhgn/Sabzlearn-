@@ -53,4 +53,26 @@ const register = () => {
     });
 };
 
-export { register };
+const login = () => {
+  const identifierInput = document.querySelector("#identifier");
+  const passwordInput = document.querySelector("#password");
+
+  const userInfo = {
+    identifier: identifierInput.value.trim(),
+    password: passwordInput.value.trim(),
+  };
+
+  fetch(`http://127.0.0.1:4000/v1/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userInfo),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((result) => {
+      console.log(result);
+    });
+};
+
+export { register, login };
