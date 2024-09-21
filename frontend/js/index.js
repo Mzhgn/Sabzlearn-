@@ -1,4 +1,8 @@
-import { getAllCourses } from "./funcs/shared.js";
+import {
+  getAllCourses,
+  getPopularCourses,
+  getPresellCourses,
+} from "./funcs/shared.js";
 
 const $ = document;
 const landingTitle = $.querySelector(".landing__title");
@@ -15,8 +19,12 @@ window.addEventListener("load", () => {
   counting(520, landingMinutesCount);
   counting(3251, usersCount);
 
-  getAllCourses().then((data) => {
-    // console.log(data);
+  getAllCourses();
+  getPopularCourses().then((data) => {
+    console.log(data);
+  });
+  getPresellCourses().then((data) => {
+    console.log(data);
   });
 });
 

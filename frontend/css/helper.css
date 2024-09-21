@@ -24,7 +24,7 @@
   right: 0;
   bottom: 0;
   width: 100%;
-  /* max-width: 250px; */
+  max-width: 250px;
   height: 60%;
   background-color: rgba(43, 206, 86, 0.2);
 }

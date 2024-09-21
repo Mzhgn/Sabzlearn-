@@ -45,7 +45,7 @@ const getAllCourses = async () => {
       ` <div class="col-4">
                    <a href="#">
                     <img
-                      src="images/courses/fareelancer.png"
+                      src=http://127.0.0.1:4000/courses/covers/${course.cover}
                       alt="Course img"
                       class="course-box__img"
                     />
@@ -111,4 +111,182 @@ const getAllCourses = async () => {
   return courses;
 };
 
-export { showUserNameNavbar, renderTopbarMenu, getAllCourses };
+const getPopularCourses = async () => {
+  const popularCourseWrapper = document.querySelector(
+    "#popular-courses-wrapper"
+  );
+  const res = await fetch(`http://127.0.0.1:4000/v1/courses/popular`);
+  const popularCourses = await res.json();
+
+  popularCourses.forEach((course) => {
+    popularCourseWrapper.insertAdjacentHTML(
+      "beforeend",
+      `<div class="swiper-slide">
+                <div class="course-box">
+                  <a href="#">
+                    <img
+                      src=http://127.0.0.1:4000/courses/covers/${course.cover}
+                      alt="Course img"
+                      class="course-box__img"
+                    />
+                  </a>
+                  <div class="course-box__main">
+                    <a href="#" class="course-box__title"
+                      >${course.name}</a
+                    >
+                    <div class="course-box__rating-teacher">
+                      <div class="course-box__teacher">
+                        <i
+                          class="fas fa-chalkboard-teacher course-box__teacher-icon"
+                        ></i>
+                        <a href="#" class="course-box__teacher-link"
+                          > ${course.creator}</a
+                        >
+                      </div>
+                      <div class="courses-box__rating">
+                        <img
+                          src="images/svgs/star.svg"
+                          alt="rating iamge"
+                          class="course-box__star"
+                        />
+                        <img
+                          src="images/svgs/star_fill.svg"
+                          alt="rating iamge"
+                          class="course-box__star"
+                        />
+                        <img
+                          src="images/svgs/star_fill.svg"
+                          alt="rating iamge"
+                          class="course-box__star"
+                        />
+                        <img
+                          src="images/svgs/star_fill.svg"
+                          alt="rating iamge"
+                          class="course-box__star"
+                        />
+                        <img
+                          src="images/svgs/star_fill.svg"
+                          alt="rating iamge"
+                          class="course-box__star"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="course-box__status">
+                      <div class="course-box__users">
+                        <i class="fas fa-users course-box__users"></i>
+                        <span class="course-box__users-text">${
+                          course.registers
+                        }</span>
+                      </div>
+                      <span class="course-box__price">${
+                        course.price === 0
+                          ? "رایگان"
+                          : course.price.toLocaleString()
+                      }</span>
+                    </div>
+                  </div>
+
+                  <div class="course-box_foooter">
+                    <a href="#" class="course-box__footer-link"
+                      >مشاهده اطلاعات
+                      <i class="fas fa-arrow-left course-box__footer-icon"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>`
+    );
+  });
+
+  return popularCourses;
+};
+
+const getPresellCourses = async () => {
+  const presellCoursesWrapper = document.querySelector(
+    "#presell-courses-wrapper"
+  );
+
+  const res = await fetch(`http://127.0.0.1:4000/v1/courses/presell`);
+  const presellCourses = await res.json();
+
+  presellCourses.forEach((course) => {
+    presellCoursesWrapper.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="swiper-slide">
+                <div class="course-box">
+                  <a href="#">
+                    <img
+                      src=http://127.0.0.1:4000/courses/covers/${course.cover}
+                      alt="Course img"
+                      class="course-box__img"
+                    />
+                  </a>
+                  <div class="course-box__main">
+                    <a href="#" class="course-box__title"
+                      >${course.name}</a
+                    >
+                    <div class="course-box__rating-teacher">
+                      <div class="course-box__teacher">
+                        <i
+                          class="fas fa-chalkboard-teacher course-box__teacher-icon"
+                        ></i>
+                        <a href="#" class="course-box__teacher-link"
+                          >${course.creator} </a
+                        >
+                      </div>
+                      <div class="courses-box__rating">
+                      ${Array(5 - course.courseAverageScore)
+                        .fill(0)
+                        .map(
+                          (score) =>
+                            '<img src="images/svgs/star.svg" alt="rating iamge" class="course-box__star"/>'
+                        )
+                        .join(" ")}  ${Array(course.courseAverageScore)
+        .fill(0)
+        .map(
+          (score) =>
+            '<img src="images/svgs/star_fill.svg" alt="rating iamge" class="course-box__star"/>'
+        )
+        .join(" ")}
+                        
+                      </div>
+                    </div>
+
+                    <div class="course-box__status">
+                      <div class="course-box__users">
+                        <i class="fas fa-users course-box__users"></i>
+                        <span class="course-box__users-text">${
+                          course.registers
+                        }</span>
+                      </div>
+                      <span class="course-box__price">${
+                        course.price === 0
+                          ? "رایگان"
+                          : course.price.toLocaleString()
+                      }</span>
+                    </div>
+                  </div>
+
+                  <div class="course-box_foooter">
+                    <a href="#" class="course-box__footer-link"
+                      >مشاهده اطلاعات
+                      <i class="fas fa-arrow-left course-box__footer-icon"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+      `
+    );
+  });
+
+  return presellCourses;
+};
+
+export {
+  showUserNameNavbar,
+  renderTopbarMenu,
+  getAllCourses,
+  getPopularCourses,
+  getPresellCourses,
+};

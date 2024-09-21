@@ -5,10 +5,9 @@
 @import "./defaults.css";
 @import "./footer.css";
 @import "./course-box.css";
+@import "./helper.css";
 /* Default styles */
-
 /****** NavBar section *********/
-
 /******** landing section *****/
 .landing {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
