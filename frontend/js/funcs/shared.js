@@ -43,8 +43,7 @@ const getAllCourses = async () => {
     coursesContainer.insertAdjacentHTML(
       "beforeend",
       ` <div class="col-4">
-                <div class="course-box">
-                  <a href="#">
+                   <a href="#">
                     <img
                       src="images/courses/fareelancer.png"
                       alt="Course img"
@@ -64,32 +63,22 @@ const getAllCourses = async () => {
                           > ${course.creator}</a
                         >
                       </div>
-                      <div class="courses-box__rating">
-                        <img
-                          src="images/svgs/star.svg"
-                          alt="rating iamge"
-                          class="course-box__star"
-                        />
-                        <img
-                          src="images/svgs/star_fill.svg"
-                          alt="rating iamge"
-                          class="course-box__star"
-                        />
-                        <img
-                          src="images/svgs/star_fill.svg"
-                          alt="rating iamge"
-                          class="course-box__star"
-                        />
-                        <img
-                          src="images/svgs/star_fill.svg"
-                          alt="rating iamge"
-                          class="course-box__star"
-                        />
-                        <img
-                          src="images/svgs/star_fill.svg"
-                          alt="rating iamge"
-                          class="course-box__star"
-                        />
+                      <div class="courses-box__rating"> ${Array(
+                        5 - course.courseAverageScore
+                      )
+                        .fill(0)
+                        .map(
+                          (score) =>
+                            '<img src="images/svgs/star.svg" alt="rating iamge" class="course-box__star"/>'
+                        )
+                        .join(" ")}  ${Array(course.courseAverageScore)
+        .fill(0)
+        .map(
+          (score) =>
+            '<img src="images/svgs/star_fill.svg" alt="rating iamge" class="course-box__star"/>'
+        )
+        .join(" ")} 
+                        
                       </div>
                     </div>
 
