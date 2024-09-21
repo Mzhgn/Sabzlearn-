@@ -1,5 +1,5 @@
-@import "/css/variables.css";
-@import "/css/helper.css";
+@import "./variables.css";
+@import "./helper.css";
 @import "./fonts.css";
 @import "./top-bar.css";
 @import "./navbar.css";
