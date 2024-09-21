@@ -68,10 +68,24 @@ const login = () => {
     body: JSON.stringify(userInfo),
   })
     .then((res) => {
+      if (res.status === 401) {
+        showSwal(
+          "کاربری با این اطلاعات یافت نشد",
+          "error",
+          "تصحیح اطلاعات",
+          () => {}
+        );
+      } else if (res.status === 200) {
+        showSwal("با موفقیت وارد شدید", "success", "ورود به پنل", () => {
+          location.href = "index.html";
+        });
+      }
+      console.log(res);
       return res.json();
     })
     .then((result) => {
       console.log(result);
+      saveIntoLocalStorage("user", { token: result.accessToken });
     });
 };
 
