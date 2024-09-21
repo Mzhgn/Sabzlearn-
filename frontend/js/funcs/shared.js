@@ -17,8 +17,18 @@ const showUserNameNavbar = () => {
   }
 };
 
-export { showUserNameNavbar };
+const renderTopbarMenu = async () => {
+  const topbarMenuLists = document.querySelector(".top-bar__menu");
 
-// getMe().then((data) => {
-//   console.log(data);
-// });
+  const res = await fetch(`http://127.0.0.1:4000/v1/menus/topbar`);
+  const topbarMenus = await res.json();
+
+  topbarMenuLists.innerHTML = " ";
+
+  [...topbarMenus].splice(0, 6).map((menu) => {
+    topbarMenuLists.innerHTML += `<li class="top-bar__item">
+                  <a href="" class="top-bar__link">${menu.title} </a></li>`;
+  });
+};
+
+export { showUserNameNavbar, renderTopbarMenu };
