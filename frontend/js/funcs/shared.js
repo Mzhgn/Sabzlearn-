@@ -320,6 +320,41 @@ const getAllArticles = async () => {
   return articles;
 };
 
+const getNavbarMeues = async () => {
+  const menusWrapper = document.querySelector("#menus-wrapper");
+  const res = await fetch(`http://127.0.0.1:4000/v1/menus`);
+  const navbarMenus = await res.json();
+
+  navbarMenus.forEach((menu) => {
+    menusWrapper.insertAdjacentHTML(
+      "beforeend",
+      `
+      <li class="main-header__item">
+                <a href="#" class="main-header__link"
+                  >${menu.title} ${
+        menu.submenus.length !== 0
+          ? `<i class="fas fa-angle-down main-header__link-icon"></i>
+                  <ul class="main-header__dropdown"> ${menu.submenus
+                    .map(
+                      (submenu) =>
+                        `<li class="main-header__dropdown-item">
+                        <a href="#" class="main-header__dropdown-link">
+                          ${submenu.title}
+                        </a>
+                      </li>`
+                    )
+                    .join(" ")}
+                  </ul>`
+          : ""
+      }
+                  </a>
+              </li>`
+    );
+  });
+
+  return navbarMenus;
+};
+
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -327,4 +362,5 @@ export {
   getPopularCourses,
   getPresellCourses,
   getAllArticles,
+  getNavbarMeues,
 };

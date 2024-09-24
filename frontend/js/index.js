@@ -3,6 +3,7 @@ import {
   getPopularCourses,
   getPresellCourses,
   getAllArticles,
+  getNavbarMeues,
 } from "./funcs/shared.js";
 
 const $ = document;
@@ -23,7 +24,8 @@ window.addEventListener("load", () => {
   getAllCourses();
   getPopularCourses();
   getPresellCourses();
-  getAllArticles().then((data) => {
+  getAllArticles();
+  getNavbarMeues().then((data) => {
     console.log(data);
   });
 });
