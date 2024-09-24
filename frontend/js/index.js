@@ -2,6 +2,7 @@ import {
   getAllCourses,
   getPopularCourses,
   getPresellCourses,
+  getAllArticles,
 } from "./funcs/shared.js";
 
 const $ = document;
@@ -20,10 +21,9 @@ window.addEventListener("load", () => {
   counting(3251, usersCount);
 
   getAllCourses();
-  getPopularCourses().then((data) => {
-    console.log(data);
-  });
-  getPresellCourses().then((data) => {
+  getPopularCourses();
+  getPresellCourses();
+  getAllArticles().then((data) => {
     console.log(data);
   });
 });

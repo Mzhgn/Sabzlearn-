@@ -283,10 +283,48 @@ const getPresellCourses = async () => {
   return presellCourses;
 };
 
+const getAllArticles = async () => {
+  const aricleWrapper = document.querySelector("#articles-wrapper");
+
+  const res = await fetch(`http://127.0.0.1:4000/v1/articles`);
+  const articles = await res.json();
+
+  articles.slice(0, 6).forEach((article) => {
+    aricleWrapper.insertAdjacentHTML(
+      "beforeend",
+      `  <div class="col-4">
+              <div class="article-card">
+                <div class="article-card__header">
+                  <a href="#" class="article-card__link-img">
+                    <img
+                      src=http://127.0.0.1:4000/courses/covers/${article.cover}
+                      alt="Article Cover"
+                      class="article-card__img"
+                    />
+                  </a>
+                </div>
+                <div class="article-card__content">
+                  <a href="#" class="article-card__link"
+                    >${article.title}</a
+                  >
+                  <p class="article-card__text">
+                    ${article.description}
+                  </p>
+                  <a href="#" class="article-card__btn">بیشتر بخوانید</a>
+                </div>
+              </div>
+            </div>`
+    );
+  });
+
+  return articles;
+};
+
 export {
   showUserNameNavbar,
   renderTopbarMenu,
   getAllCourses,
   getPopularCourses,
   getPresellCourses,
+  getAllArticles,
 };
