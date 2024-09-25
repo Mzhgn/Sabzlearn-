@@ -23,6 +23,10 @@ router
   )
   .get(courseController.getAll);
 
+router
+  .route("/category/:categoryName")
+  .get(courseController.getCategoryCourses);
+
 router.route("/:id").delete(courseController.remove);
 
 router
@@ -63,9 +67,5 @@ router.route("/:shortName").post(loginUser, courseController.getOne);
 router
   .route("/:id/register")
   .post(authenticatedMiddleware, courseController.register);
-
-router
-  .route("/category/:categoryName")
-  .get(courseController.getCategoryCourses);
 
 module.exports = router;
