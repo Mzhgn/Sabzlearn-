@@ -1,5 +1,5 @@
 import { getMe } from "./auth.js";
-import { isLogin } from "./utils.js";
+import { isLogin, getUrlParam } from "./utils.js";
 
 const showUserNameNavbar = () => {
   const navbarNameBox = document.querySelector(".main-header__profile");
@@ -330,7 +330,7 @@ const getNavbarMeues = async () => {
       "beforeend",
       `
       <li class="main-header__item">
-                <a href="#" class="main-header__link"
+                <a href=category.html?cat=${menu.href} class="main-header__link"
                   >${menu.title} ${
         menu.submenus.length !== 0
           ? `<i class="fas fa-angle-down main-header__link-icon"></i>
@@ -355,6 +355,19 @@ const getNavbarMeues = async () => {
   return navbarMenus;
 };
 
+const getCategoryCourses = async () => {
+  const categoryName = getUrlParam("cat");
+  const modifiedCategoryName = categoryName.replace("/category-info/", "");
+  console.log(modifiedCategoryName);
+
+  const res = await fetch(
+    `http://127.0.0.1:4000/v1/courses/category/${modifiedCategoryName}`
+  );
+  console.log(res);
+  const courses = await res.json();
+  return courses;
+};
+
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -363,4 +376,5 @@ export {
   getPresellCourses,
   getAllArticles,
   getNavbarMeues,
+  getCategoryCourses,
 };

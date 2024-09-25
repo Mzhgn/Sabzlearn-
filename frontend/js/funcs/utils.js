@@ -20,10 +20,16 @@ const isLogin = () => {
   return userInfo ? true : false;
 };
 
+const getUrlParam = (key) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(key);
+};
+
 export {
   showSwal,
   saveIntoLocalStorage,
   getFromLocalStorage,
   getToken,
   isLogin,
+  getUrlParam,
 };
