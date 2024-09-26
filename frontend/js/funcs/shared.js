@@ -358,13 +358,14 @@ const getNavbarMeues = async () => {
 const getCategoryCourses = async () => {
   const categoryName = getUrlParam("cat");
   const modifiedCategoryName = categoryName.replace("/category-info/", "");
-  console.log(modifiedCategoryName);
 
   const res = await fetch(
     `http://127.0.0.1:4000/v1/courses/category/${modifiedCategoryName}`
   );
-  console.log(res);
   const courses = await res.json();
+
+  console.log(courses);
+
   return courses;
 };
 
