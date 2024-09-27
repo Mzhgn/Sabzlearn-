@@ -53,11 +53,7 @@ router.route("/related/:shortName").get(courseController.getRelated);
 
 router
   .route("/:shortName/:sessionID")
-  .get(
-    authenticatedMiddleware,
-    isAdminMiddleware,
-    courseController.getSessionInfo
-  );
+  .get(authenticatedMiddleware, courseController.getSessionInfo);
 
 router.route("/presell").get(courseController.getAll);
 router.route("/popular").get(courseController.getAll);

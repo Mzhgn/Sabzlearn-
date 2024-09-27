@@ -606,8 +606,13 @@ const getCourseDetails = () => {
                               class="fab fa-youtube introduction__accordion-icon"
                             ></i>
                             ${
-                              course.free || course.isUserRegisteredToThisCourse
-                                ? `<a href="#"      class="introduction__accordion-link">
+                              session.free ||
+                              course.isUserRegisteredToThisCourse
+                                ? `<a href="episode.html?name=${
+                                    course.shortName
+                                  }&id=${
+                                    session._id
+                                  }"      class="introduction__accordion-link">
                               ${session.title}
                                     </a>
                                    </div>
@@ -619,7 +624,7 @@ const getCourseDetails = () => {
                                       course.isUserRegisteredToThisCourse
                                     )
                                       ? `<i class="fa fa-lock"></i>`
-                                      : `""`
+                                      : ``
                                   }
                             </span>
                           </div>
@@ -708,6 +713,21 @@ const getRelatedCourses = async () => {
   }
   return relatedCourses;
 };
+
+const getSessionDetails = async () => {
+  const courseShortName = getUrlParam("name");
+  const sessionID = getUrlParam("id");
+
+  fetch(`http://127.0.0.1:4000/v1/courses/${courseShortName}/${sessionID}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+};
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -721,4 +741,5 @@ export {
   coursesSorting,
   getCourseDetails,
   getRelatedCourses,
+  getSessionDetails,
 };
