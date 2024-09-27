@@ -548,7 +548,7 @@ const getCourseDetails = () => {
 
   // items from DOM
   const $ = document;
-  const courseTiteEl = $.querySelector(".cousre-info__title");
+  const courseTiteEl = $.querySelector(".course-info__title");
   const courseTextEl = $.querySelector(".course-info__text");
   const courseCategoryEl = $.querySelector(".course-info__link");
   const courseRegisterStatusEl = $.querySelector(
@@ -569,7 +569,6 @@ const getCourseDetails = () => {
   })
     .then((res) => res.json())
     .then((course) => {
-      console.log(course);
       courseTiteEl.innerHTML = course.name;
       courseTextEl.innerHTML = course.description;
       courseCategoryEl.innerHTML = course.categoryID.title;
@@ -643,6 +642,39 @@ const getCourseDetails = () => {
       }
     });
 };
+
+const getRelatedCourses = async () => {
+  const courseShortName = getUrlParam("name");
+
+  const relatedCoursesLists = document.querySelector(".course-info__lists");
+  const res = await fetch(
+    `http://127.0.0.1:4000/v1/courses/related/${courseShortName}`
+  );
+  // console.log(res);
+  const relatedCourses = await res.json();
+
+  if (relatedCourses.length) {
+    relatedCourses.forEach((course) => {
+      relatedCoursesLists.insertAdjacentHTML(
+        "beforeend",
+        `<li class="course-info__lists-item">
+                    <a href="course.html?name=${course.shortName}" class="course-info__lists-link">
+                      <img
+                        src="http://127.0.0.1:4000/courses/covers/${course.cover}"
+                        alt="course cover image"
+                        class="course-info__lists-img"
+                      />
+                      <span class="course-info__courses-title"
+                        >   ${course.name} </span
+                      >
+                    </a>
+                  </li>`
+      );
+    });
+  } else {
+  }
+  return relatedCourses;
+};
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -655,4 +687,5 @@ export {
   inserCategoryHtmlTemplate,
   coursesSorting,
   getCourseDetails,
+  getRelatedCourses,
 };
