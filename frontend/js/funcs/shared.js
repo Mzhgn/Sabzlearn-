@@ -557,6 +557,10 @@ const getCourseDetails = () => {
   const courseUpdateEl = $.querySelector(".course-box__update");
   const courseSupportEl = $.querySelector(".course-boxes__box-left--support");
   const courseStatusEl = $.querySelector(".course-boxes__box-left--subtitle");
+  const courseCommentsEl = $.querySelector(".course-info__total-comment-text");
+  const courseStudentEl = $.querySelector(".course-info__total-sale-number");
+  const coursePeriodEl = $.querySelector(".coursePeriod");
+
   fetch(`http://127.0.0.1:4000/v1/courses/${courseShortName}`, {
     method: "POST",
     headers: {
@@ -581,6 +585,62 @@ const getCourseDetails = () => {
 
       courseSupportEl.innerHTML = course.support;
       courseUpdateEl.innerHTML = course.updatedAt.slice(0, 10);
+      courseCommentsEl.innerHTML = `${course.comments.length} دیدگاه `;
+      courseStudentEl.innerHTML = course.courseStudentsCount;
+      // show course sessions
+      const sessionsWrapper = $.querySelector(".sessions-wrapper");
+
+      if (course.sessions.length) {
+        course.sessions.forEach((session, i) => {
+          sessionsWrapper.insertAdjacentHTML(
+            "beforeend",
+            `  <div
+                          class="accordion-body introduction__accordion-body"
+                        >
+                          <div class="introduction__accordion-right">
+                            <span class="introduction__accordion-count">${
+                              i + 1
+                            }</span>
+                            <i
+                              class="fab fa-youtube introduction__accordion-icon"
+                            ></i>
+                            <a href="#" class="introduction__accordion-link">
+                              ${session.title}
+                            </a>
+                          </div>
+                          <div class="introduction__accordion-left">
+                            <span class="introduction__accordion-time">
+                              ${session.time}
+                            </span>
+                          </div>
+                        </div>`
+          );
+        });
+      } else {
+        sessionsWrapper.insertAdjacentHTML(
+          "beforeend",
+          `  <div
+                          class="accordion-body introduction__accordion-body"
+                        >
+                          <div class="introduction__accordion-right">
+                            <span class="introduction__accordion-count">--
+                              
+                            </span>
+                            <i
+                              class="fab fa-youtube introduction__accordion-icon"
+                            ></i>
+                            <a href="#" class="introduction__accordion-link">
+                             برای این دوره جلسه ای بارگذاری نشده است
+                            </a>
+                          </div>
+                          <div class="introduction__accordion-left">
+                            <span class="introduction__accordion-time">
+                              00:00
+                            </span>
+                          </div>
+                        </div>`
+        );
+      }
     });
 };
 export {
