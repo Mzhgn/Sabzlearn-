@@ -3,6 +3,7 @@ import {
   inserCategoryHtmlTemplate,
   coursesSorting,
 } from "./funcs/shared.js";
+import { searchInArray } from "./funcs/utils.js";
 
 window.addEventListener("load", () => {
   getCategoryCourses().then((responseCourses) => {
@@ -18,6 +19,7 @@ window.addEventListener("load", () => {
     const selectionTitleElem = document.querySelector(
       ".courses-top-bar__selection-title"
     );
+    const courseSearchInput = document.querySelector(".courses-top-bar__input");
     // show category courses row/column
     if (courses.length) {
       courses.forEach((course) => {
@@ -143,6 +145,16 @@ window.addEventListener("load", () => {
           categoryWrapper
         );
       });
+    });
+
+    // handle search input of courses
+    courseSearchInput.addEventListener("input", (event) => {
+      const shownCourses = searchInArray(
+        [...responseCourses],
+        "name",
+        event.target.value
+      );
+      inserCategoryHtmlTemplate(shownCourses, coursesShowType, categoryWrapper);
     });
   });
 });
