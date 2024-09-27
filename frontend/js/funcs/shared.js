@@ -506,7 +506,37 @@ const inserCategoryHtmlTemplate = (courses, showType, parentElement) => {
     });
   }
 };
+const coursesSorting = (array, filterMethod) => {
+  let outputArray = [];
 
+  switch (filterMethod) {
+    case "free": {
+      outputArray = array.filter((course) => course.price === 0);
+      break;
+    }
+    case "paid": {
+      outputArray = array.filter((course) => course.price !== 0);
+      break;
+    }
+    case "oldest": {
+      outputArray = [...array].reverse();
+      break;
+    }
+    case "first": {
+      outputArray = array;
+      break;
+    }
+    case "default": {
+      outputArray = array;
+      break;
+    }
+    default: {
+      outputArray = array;
+      break;
+    }
+  }
+  return outputArray;
+};
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -517,4 +547,5 @@ export {
   getNavbarMeues,
   getCategoryCourses,
   inserCategoryHtmlTemplate,
+  coursesSorting,
 };

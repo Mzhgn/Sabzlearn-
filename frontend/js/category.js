@@ -1,6 +1,7 @@
 import {
   getCategoryCourses,
   inserCategoryHtmlTemplate,
+  coursesSorting,
 } from "./funcs/shared.js";
 
 window.addEventListener("load", () => {
@@ -110,6 +111,19 @@ window.addEventListener("load", () => {
     // show courses by user Selection.
     courseFilteringSelections.forEach((selection) => {
       selection.addEventListener("click", (event) => {
+        courseFilteringSelections.forEach((selection) => {
+          selection.addEventListener("mouseover", (event) => {
+            courseFilteringSelections.forEach((selected) => {
+              selected.classList.remove(
+                "courses-top-bar__selection-item--active"
+              );
+            });
+            event.target.classList.add(
+              "courses-top-bar__selection-item--active"
+            );
+          });
+        });
+
         courseFilteringSelections.forEach((selected) => {
           selected.classList.remove("courses-top-bar__selection-item--active");
         });
@@ -120,14 +134,14 @@ window.addEventListener("load", () => {
           "beforeend",
           `${event.target.innerHTML}<i class="fas fa-angle-down courses-top-bar__selection-icon">`
         );
-      });
-    });
-    courseFilteringSelections.forEach((selection) => {
-      selection.addEventListener("mouseover", (event) => {
-        courseFilteringSelections.forEach((selected) => {
-          selected.classList.remove("courses-top-bar__selection-item--active");
-        });
-        event.target.classList.add("courses-top-bar__selection-item--active");
+
+        let sortingSelection = event.target.dataset.key;
+        let shownCourses = coursesSorting([...courses], sortingSelection);
+        inserCategoryHtmlTemplate(
+          shownCourses,
+          coursesShowType,
+          categoryWrapper
+        );
       });
     });
   });
