@@ -589,6 +589,8 @@ const getCourseDetails = () => {
       // show course sessions
       const sessionsWrapper = $.querySelector(".sessions-wrapper");
 
+      console.log(course.sessions);
+
       if (course.sessions.length) {
         course.sessions.forEach((session, i) => {
           sessionsWrapper.insertAdjacentHTML(
@@ -603,15 +605,46 @@ const getCourseDetails = () => {
                             <i
                               class="fab fa-youtube introduction__accordion-icon"
                             ></i>
-                            <a href="#" class="introduction__accordion-link">
+                            ${
+                              course.free || course.isUserRegisteredToThisCourse
+                                ? `<a href="#"      class="introduction__accordion-link">
                               ${session.title}
-                            </a>
-                          </div>
-                          <div class="introduction__accordion-left">
+                                    </a>
+                                   </div>
+                                   <div class="introduction__accordion-left">
                             <span class="introduction__accordion-time">
-                              ${session.time}
+                              ${session.time} ${
+                                    !(
+                                      session.free ||
+                                      course.isUserRegisteredToThisCourse
+                                    )
+                                      ? `<i class="fa fa-lock"></i>`
+                                      : `""`
+                                  }
                             </span>
                           </div>
+                                    `
+                                : `<span class="introduction__accordion-link">
+                              ${session.title}
+                                   </span>
+                                   </div>
+
+                                   <div class="introduction__accordion-left">
+                            <span class="introduction__accordion-time">
+                              ${session.time} ${
+                                    !(
+                                      session.free ||
+                                      course.isUserRegisteredToThisCourse
+                                    )
+                                      ? `<i class="fa fa-lock"></i>`
+                                      : ``
+                                  }
+                            </span>
+                          </div>
+                                    `
+                            }
+                            
+                          
                         </div>`
           );
         });
