@@ -1,5 +1,5 @@
 import { getMe } from "./auth.js";
-import { isLogin, getUrlParam } from "./utils.js";
+import { isLogin, getUrlParam, getToken } from "./utils.js";
 
 const showUserNameNavbar = () => {
   const navbarNameBox = document.querySelector(".main-header__profile");
@@ -39,11 +39,12 @@ const getAllCourses = async () => {
   const res = await fetch(`http://127.0.0.1:4000/v1/courses`);
   const courses = await res.json();
 
+  console.log(courses);
   courses.slice(0, 6).map((course) => {
     coursesContainer.insertAdjacentHTML(
       "beforeend",
       ` <div class="col-4">
-                   <a href="#">
+                   <a href="course.html?name=${course.shortName}">
                     <img
                       src=http://127.0.0.1:4000/courses/covers/${course.cover}
                       alt="Course img"
@@ -51,7 +52,9 @@ const getAllCourses = async () => {
                     />
                   </a>
                   <div class="course-box__main">
-                    <a href="#" class="course-box__title"
+                    <a href="course.html?name=${
+                      course.shortName
+                    }" class="course-box__title"
                       >${course.name}</a
                     >
                     <div class="course-box__rating-teacher">
@@ -59,7 +62,9 @@ const getAllCourses = async () => {
                         <i
                           class="fas fa-chalkboard-teacher course-box__teacher-icon"
                         ></i>
-                        <a href="#" class="course-box__teacher-link"
+                        <a href="course.html?name=${
+                          course.shortName
+                        }" class="course-box__teacher-link"
                           > ${course.creator}</a
                         >
                       </div>
@@ -537,6 +542,47 @@ const coursesSorting = (array, filterMethod) => {
   }
   return outputArray;
 };
+
+const getCourseDetails = () => {
+  const courseShortName = getUrlParam("name");
+
+  // items from DOM
+  const $ = document;
+  const courseTiteEl = $.querySelector(".cousre-info__title");
+  const courseTextEl = $.querySelector(".course-info__text");
+  const courseCategoryEl = $.querySelector(".course-info__link");
+  const courseRegisterStatusEl = $.querySelector(
+    ".course-info__register-title"
+  );
+  const courseUpdateEl = $.querySelector(".course-box__update");
+  const courseSupportEl = $.querySelector(".course-boxes__box-left--support");
+  const courseStatusEl = $.querySelector(".course-boxes__box-left--subtitle");
+  fetch(`http://127.0.0.1:4000/v1/courses/${courseShortName}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((course) => {
+      console.log(course);
+      courseTiteEl.innerHTML = course.name;
+      courseTextEl.innerHTML = course.description;
+      courseCategoryEl.innerHTML = course.categoryID.title;
+      courseRegisterStatusEl.insertAdjacentHTML(
+        "beforeend",
+        course.isUserRegisteredToThisCourse
+          ? "دانشجو دوره هستید"
+          : "ثبت نام در دوره"
+      );
+      courseStatusEl.innerHTML = course.isComplete
+        ? "تکمیل شده"
+        : "در حال برگزاری";
+
+      courseSupportEl.innerHTML = course.support;
+      courseUpdateEl.innerHTML = course.updatedAt.slice(0, 10);
+    });
+};
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -548,4 +594,5 @@ export {
   getCategoryCourses,
   inserCategoryHtmlTemplate,
   coursesSorting,
+  getCourseDetails,
 };
