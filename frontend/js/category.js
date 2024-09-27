@@ -154,7 +154,19 @@ window.addEventListener("load", () => {
         "name",
         event.target.value
       );
-      inserCategoryHtmlTemplate(shownCourses, coursesShowType, categoryWrapper);
+      if (shownCourses.length) {
+        inserCategoryHtmlTemplate(
+          shownCourses,
+          coursesShowType,
+          categoryWrapper
+        );
+      } else {
+        categoryWrapper.innerHTML = "";
+        categoryWrapper.insertAdjacentHTML(
+          "beforeend",
+          `<div class="alert alert-danger">دوره ای برای این جستجو یافت نشد</div>`
+        );
+      }
     });
   });
 });
