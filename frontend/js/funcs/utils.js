@@ -32,6 +32,39 @@ const searchInArray = (array, searchProperty, searchValue) => {
   return outputArray;
 };
 
+const addParamToUrl = (param, value) => {
+  let url = new URL(location.href);
+  let searchParams = url.searchParams;
+
+  searchParams.set(param, value);
+  url.search = searchParams.toString();
+  location.href = url.toString();
+};
+
+const paginatedItems = (array, itemsPerPage, parentEl, currentPage) => {
+  parentEl.innerHTML = "";
+  let endIndex = itemsPerPage * currentPage;
+  let startIndex = endIndex - itemsPerPage;
+  let itemsPaginated = array.slice(startIndex, endIndex);
+  let paginatedNumber = Math.ceil(array.length / itemsPerPage);
+
+  for (let i = 1; i < paginatedNumber + 1; i++) {
+    parentEl.insertAdjacentHTML(
+      "beforeend",
+      `
+      <li class="courses__pagination-item">
+      ${
+        i === Number(currentPage)
+          ? ` <a  onclick="addParamToUrl('page',${i})" class="courses__pagination-link courses__pagination-link--active"> ${i} </a>`
+          : `<a  onclick="addParamToUrl('page',${i})" class="courses__pagination-link"> ${i} </a>`
+      }
+      </li>
+      `
+    );
+  }
+  return itemsPaginated;
+};
+
 export {
   showSwal,
   saveIntoLocalStorage,
@@ -40,4 +73,6 @@ export {
   isLogin,
   getUrlParam,
   searchInArray,
+  paginatedItems,
+  addParamToUrl,
 };

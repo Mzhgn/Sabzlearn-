@@ -3,7 +3,13 @@ import {
   inserCategoryHtmlTemplate,
   coursesSorting,
 } from "./funcs/shared.js";
-import { searchInArray } from "./funcs/utils.js";
+import {
+  searchInArray,
+  paginatedItems,
+  getUrlParam,
+  addParamToUrl,
+} from "./funcs/utils.js";
+window.addParamToUrl = addParamToUrl;
 
 window.addEventListener("load", () => {
   getCategoryCourses().then((responseCourses) => {
@@ -168,5 +174,23 @@ window.addEventListener("load", () => {
         );
       }
     });
+
+    // Handle Pagination
+    const paginationWrapper = document.querySelector(
+      ".courses__pagination-list"
+    );
+    console.log();
+    const currentPage = getUrlParam("page");
+    const showPaginatedCourses = paginatedItems(
+      [...responseCourses],
+      3,
+      paginationWrapper,
+      currentPage
+    );
+    inserCategoryHtmlTemplate(
+      [...showPaginatedCourses],
+      coursesShowType,
+      categoryWrapper
+    );
   });
 });

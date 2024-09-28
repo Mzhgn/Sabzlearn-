@@ -27,7 +27,7 @@ const renderTopbarMenu = async () => {
 
   const shuffledArray = topbarMenus.sort((a, b) => 0.5 - Math.random());
 
-  topbarMenus.slice(0, 6).map((menu) => {
+  shuffledArray.slice(0, 6).map((menu) => {
     topbarMenuLists.innerHTML += `<li class="top-bar__item">
                   <a href="" class="top-bar__link">${menu.title} </a></li>`;
   });
@@ -334,7 +334,9 @@ const getNavbarMeues = async () => {
       "beforeend",
       `
       <li class="main-header__item">
-                <a href=category.html?cat=${menu.href} class="main-header__link"
+                <a href=category.html?cat=${
+                  menu.href
+                }&page=1 class="main-header__link"
                   >${menu.title} ${
         menu.submenus.length !== 0
           ? `<i class="fas fa-angle-down main-header__link-icon"></i>
@@ -1025,6 +1027,37 @@ const globalSearch = async () => {
 
   return data;
 };
+
+const recordComments = async () => {
+  const commentTextAreaEl = document.querySelector(
+    ".comments__score-input-respond"
+  );
+  const commentRatingEl = document.querySelector("#comment-score");
+  let score = 5;
+  let courseShortName = getUrlParam("name");
+
+  commentRatingEl.addEventListener("change", (e) => {
+    score = e.target.value;
+  });
+  const newCommentInfo = {
+    body: commentTextAreaEl.value.trim(),
+    courseShortName,
+    score,
+  };
+
+  const res = await fetch(`http://127.0.0.1:4000/v1/comments`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newCommentInfo),
+  });
+  console.log(res);
+  if (res.ok) {
+    showSwal("نظر شما با موفقیت ثبت شد", "success", "خیلی عالی", () => {});
+  }
+};
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -1042,4 +1075,5 @@ export {
   submitContactUs,
   createNewsletter,
   globalSearch,
+  recordComments,
 };
