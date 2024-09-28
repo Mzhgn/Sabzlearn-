@@ -1,5 +1,5 @@
 import { getMe } from "./auth.js";
-import { isLogin, getUrlParam, getToken } from "./utils.js";
+import { isLogin, getUrlParam, getToken, showSwal } from "./utils.js";
 
 const showUserNameNavbar = () => {
   const navbarNameBox = document.querySelector(".main-header__profile");
@@ -40,8 +40,6 @@ const getAllCourses = async () => {
   const courses = await res.json();
 
   courses.slice(0, 6).map((course) => {
-    console.log("hi:", course);
-
     coursesContainer.insertAdjacentHTML(
       "beforeend",
       ` <div class="col-4">
@@ -764,6 +762,76 @@ const getSessionDetails = async () => {
       });
     });
 };
+
+const submitContactUs = async () => {
+  const nameInputEl = document.querySelector("#name");
+  const emailInputEl = document.querySelector("#email");
+  const phoneInputEl = document.querySelector("#phone");
+  const bodyInputEl = document.querySelector("#body");
+
+  const newContactUsInfo = {
+    name: nameInputEl.value.trim(),
+    email: emailInputEl.value.trim(),
+    phone: phoneInputEl.value.trim(),
+    body: bodyInputEl.value.trim(),
+  };
+  const res = await fetch(`http://127.0.0.1:4000/v1/contact`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newContactUsInfo),
+  });
+  const resultContactUs = await res.json();
+  console.log(res);
+
+  if (res.status === 201) {
+    showSwal(
+      "پیغام با موفقیت ارسال شد!",
+      "success",
+      "ورود به پنل",
+      (result) => {
+        location.href = "index.html";
+      }
+    );
+  } else {
+    showSwal(
+      "مشکلی در ارسال پیغام وجود دارد \n  مجددا امتحان کنید",
+      "error",
+      "ورود صفحه اصلی",
+      (result) => {
+        location.href = "index.html";
+      }
+    );
+  }
+};
+
+const createNewsletter = async () => {
+  const newsLetterInput = document.querySelector("#news-letter-input");
+
+  const newsLetterEmailObj = {
+    email: newsLetterInput.value.trim(),
+  };
+  const res = await fetch(`http://127.0.0.1:4000/v1/newsletters`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newsLetterEmailObj),
+  });
+  console.log("res:", res);
+  // if (res.status === 201) {
+  //   showSwal(
+  //     "با موفقیت در خبرنامه سبزلرن عضو شدید",
+  //     "success",
+  //     "متوجه شدم",
+  //     () => {}
+  //   );
+  //   console.log("res:", res);
+  // } else {
+  // }
+};
+
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -778,4 +846,6 @@ export {
   getCourseDetails,
   getRelatedCourses,
   getSessionDetails,
+  submitContactUs,
+  createNewsletter,
 };
