@@ -39,8 +39,9 @@ const getAllCourses = async () => {
   const res = await fetch(`http://127.0.0.1:4000/v1/courses`);
   const courses = await res.json();
 
-  console.log(courses);
   courses.slice(0, 6).map((course) => {
+    console.log("hi:", course);
+
     coursesContainer.insertAdjacentHTML(
       "beforeend",
       ` <div class="col-4">
@@ -717,6 +718,8 @@ const getRelatedCourses = async () => {
 const getSessionDetails = async () => {
   const courseShortName = getUrlParam("name");
   const sessionID = getUrlParam("id");
+  const sessionVideoEl = document.querySelector(".episode-content__video");
+  const sessionsListsEl = document.querySelector(".sidebar-topics__list");
 
   fetch(`http://127.0.0.1:4000/v1/courses/${courseShortName}/${sessionID}`, {
     headers: {
@@ -724,8 +727,41 @@ const getSessionDetails = async () => {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+    .then((sessionData) => {
+      console.log(sessionData);
+      sessionVideoEl.setAttribute(
+        "src",
+        `http://127.0.0.1:4000/courses/covers/${sessionData.session.video}`
+      );
+      sessionData.sessions.forEach((session) => {
+        sessionsListsEl.insertAdjacentHTML(
+          "beforeend",
+          `<li class="sidebar-topics__list-item">
+                  <div class="sidebar-topics__list-right">
+                    <i
+                      class="sidebar-topics__list-item-icon fa fa-play-circle"
+                    ></i>
+                    
+                    ${
+                      session.free
+                        ? `<a class="sidebar-topics__list-item-link" href="episode.html?name${courseShortName}&id=${session._id}"
+                      >${session.title}</a
+                    >`
+                        : `<span class="sidebar-topics__list-item-link" 
+                      >${session.title}</span
+                    >`
+                    }
+                  </div>
+                  <div class="sidebar-topics__list-left">
+                    <span class="sidebar-topics__list-item-time">${
+                      session.time
+                    }${
+            !session.free ? `<i class="fa fa-lock"></i>` : ` `
+          }</span>
+                  </div>
+                </li>`
+        );
+      });
     });
 };
 export {
