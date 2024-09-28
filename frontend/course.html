@@ -328,7 +328,7 @@
 
     <!-- Main info Section -->
 
-    <div class="main">
+    <main class="main">
       <div class="container">
         <div class="row">
           <!-- right side -->
@@ -597,6 +597,83 @@
                   فعالیت داشته باشم.و..
                 </p>
               </div>
+              <!-- comments part start-->
+              <div class="comments">
+                <div class="comments__header">
+                  <div class="comments__header-icon-content">
+                    <i class="comments__header-icon far fa-comment"></i>
+                  </div>
+                  <span class="comments__header-title">نظرات</span>
+                </div>
+                <div class="comments__content">
+                  <!-- Comments Loaded From JS -->
+                </div>
+                <div class="comments__pagantion">
+                  <ul class="comments__pagantion-list">
+                    <li class="comments__pagantion-item">
+                      <a href="#" class="comments__pagantion-link">
+                        <i
+                          class="fas fa-long-arrow-alt-right comments__pagantion-icon"
+                        ></i>
+                      </a>
+                    </li>
+                    <li class="comments__pagantion-item">
+                      <a href="#" class="comments__pagantion-link">1</a>
+                    </li>
+                    <li class="comments__pagantion-item">
+                      <a href="#" class="comments__pagantion-link">2</a>
+                    </li>
+                    <li class="comments__pagantion-item">
+                      <a
+                        href="#"
+                        class="comments__pagantion-link comments__pagantion-link--active"
+                        >3</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="comments__rules">
+                  <span class="comments__rules-title">قوانین ثبت دیدگاه</span>
+                  <span class="comments__rules-item">
+                    <i class="fas fa-check comments__rules-icon"></i>
+                    اگر نیاز به پشتیبانی دوره دارید از قسمت پرسش سوال در قسمت
+                    نمایش انلاین استفاده نمایید و سوالات مربوط به رفع اشکال
+                    تایید نخواهند شد
+                  </span>
+                  <span class="comments__rules-item">
+                    <i class="fas fa-check comments__rules-icon"></i>
+                    دیدگاه های نامرتبط به دوره تایید نخواهد شد.
+                  </span>
+                  <span class="comments__rules-item">
+                    <i class="fas fa-check comments__rules-icon"></i>
+                    سوالات مرتبط با رفع اشکال در این بخش تایید نخواهد شد.
+                  </span>
+                  <span class="comments__rules-item">
+                    <i class="fas fa-check comments__rules-icon"></i>
+                    از درج دیدگاه های تکراری پرهیز نمایید.
+                  </span>
+                </div>
+                <div class="comments__respond">
+                  <div class="comments__score">
+                    <span class="comments__score-title">امتیاز شما</span>
+                    <div class="comments__score-input">
+                      <span class="comments__score-input-text"
+                        >امتیاز خود را انتخاب کنید</span
+                      >
+                      <i class="fas fa-angle-down comments__input-icon"></i>
+                    </div>
+                  </div>
+                  <div class="comments__respond-content">
+                    <div class="comments__respond-title">دیدگاه شما *</div>
+                    <textarea class="comments__score-input-respond"></textarea>
+                  </div>
+                  <button type="submit" class="comments__respond-btn">
+                    ارسال
+                  </button>
+                </div>
+              </div>
+
+              <!-- comments part finish-->
             </div>
           </div>
 
@@ -671,93 +748,91 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- Footer section -->
-   <footer class="footer">
-        <div class="container">
-          <div class="footer-widgets">
-            <div class="row">
-              <div class="col-4">
-                <div class="footer-widgets__item">
-                  <span class="footer-widgets__title">
-                    درباره ما
-                  </span>
-                  <p class="footer-widgets__text">
-                    وقتی تازه شروع به یادگیری برنامه نویسی کردم. یکی از مشکلاتی که در فرآیند یادگیری داشتم، کمبود آموزش های خوب با پشتیبانی قابل قبول بود که باعث شد اون موقع تصمیم بگیرم اگر روزی توانایی مالی و فنی قابل قبولی داشتم یک وب سایت برای حل این مشکل راه اندازی کنم! و خب امروز آکادمی آموزش برنامه نویسی سبزلرن به عنوان یک آکادمی خصوصی فعالیت میکنه و این به این معنی هست که هر مدرسی اجازه تدریس در اون رو نداره و باید از فیلترینگ های خاص آکادمی سبزلرن رد شه! این به این معنی هست که ما برامون فن بیان و نحوه تعامل مدرس با دانشجو بسیار مهمه! ما در آکادمی سبزلرن تضمین پشتیبانی خوب و با کیفیت رو به شما میدیم . چرا که مدرسین وب سایت سبزلرن حتی برای پشتیبانی دوره های رایگان شون هم هزینه دریافت میکنند و متعهد هستند که هوای کاربر های عزیز رو داشته باشند !
-                  </p>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-widgets">
+          <div class="row">
+            <div class="col-4">
+              <div class="footer-widgets__item">
+                <span class="footer-widgets__title"> درباره ما </span>
+                <p class="footer-widgets__text">
+                  وقتی تازه شروع به یادگیری برنامه نویسی کردم. یکی از مشکلاتی که
+                  در فرآیند یادگیری داشتم، کمبود آموزش های خوب با پشتیبانی قابل
+                  قبول بود که باعث شد اون موقع تصمیم بگیرم اگر روزی توانایی مالی
+                  و فنی قابل قبولی داشتم یک وب سایت برای حل این مشکل راه اندازی
+                  کنم! و خب امروز آکادمی آموزش برنامه نویسی سبزلرن به عنوان یک
+                  آکادمی خصوصی فعالیت میکنه و این به این معنی هست که هر مدرسی
+                  اجازه تدریس در اون رو نداره و باید از فیلترینگ های خاص آکادمی
+                  سبزلرن رد شه! این به این معنی هست که ما برامون فن بیان و نحوه
+                  تعامل مدرس با دانشجو بسیار مهمه! ما در آکادمی سبزلرن تضمین
+                  پشتیبانی خوب و با کیفیت رو به شما میدیم . چرا که مدرسین وب
+                  سایت سبزلرن حتی برای پشتیبانی دوره های رایگان شون هم هزینه
+                  دریافت میکنند و متعهد هستند که هوای کاربر های عزیز رو داشته
+                  باشند !
+                </p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="footer-widgets__item">
+                <span class="footer-widgets__title"> آخرین مطالب </span>
+                <div class="footer-widgets__links">
+                  <a href="#" class="footer-widgets__link">
+                    نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون
+                  </a>
+                  <a href="#" class="footer-widgets__link">
+                    چگونه پایتون را آپدیت کنیم؟ | آموزش صفر تا صد آپدیت کردن
+                    پایتون
+                  </a>
+                  <a href="#" class="footer-widgets__link">
+                    آموزش نصب پایتون ( Python ) در در مک، ویندوز و لینوکس | گام
+                    به گام و تصویری
+                  </a>
+                  <a href="#" class="footer-widgets__link">
+                    بهترین فریم ورک های فرانت اند | 16 فریم ورک Front end بررسی
+                    معایب و مزایا
+                  </a>
+                  <a href="#" class="footer-widgets__link">
+                    معرفی بهترین سایت آموزش جاوا اسکریپت [ تجربه محور ] + آموزش
+                    رایگان
+                  </a>
                 </div>
               </div>
-              <div class="col-4">
-                <div class="footer-widgets__item">
-                  <span class="footer-widgets__title">
-                    آخرین مطالب
-                  </span>
-                  <div class="footer-widgets__links">
+            </div>
+            <div class="col-4">
+              <div class="footer-widgets__item">
+                <span class="footer-widgets__title"> دسترسی سریع </span>
+                <div class="row">
+                  <div class="col-6">
+                    <a href="#" class="footer-widgets__link"> آموزش HTML </a>
+                  </div>
+
+                  <div class="col-6">
+                    <a href="#" class="footer-widgets__link"> آموزش CSS </a>
+                  </div>
+
+                  <div class="col-6">
                     <a href="#" class="footer-widgets__link">
-                      نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون
-                    </a>
-                    <a href="#" class="footer-widgets__link">
-                      چگونه پایتون را آپدیت کنیم؟ | آموزش صفر تا صد آپدیت کردن پایتون      
-                    </a>
-                    <a href="#" class="footer-widgets__link">
-                      آموزش نصب پایتون ( Python ) در در مک، ویندوز و لینوکس | گام به گام و تصویری
-                    </a>
-                    <a href="#" class="footer-widgets__link">
-                      بهترین فریم ورک های فرانت اند | 16 فریم ورک Front end بررسی معایب و مزایا
-                    </a>
-                    <a href="#" class="footer-widgets__link">
-                      معرفی بهترین سایت آموزش جاوا اسکریپت [ تجربه محور ] + آموزش رایگان
+                      آموزش جاوا اسکریپت
                     </a>
                   </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="footer-widgets__item">
-                  <span class="footer-widgets__title">
-                    دسترسی سریع
-                  </span>
-                  <div class="row">
-                    <div class="col-6">
-                      <a href="#" class="footer-widgets__link">
-                        آموزش HTML
-                      </a>
-                      </div>
-  
-                    <div class="col-6">
-                      <a href="#" class="footer-widgets__link">
-                        آموزش CSS
-                      </a>
-                    </div>
-                      
-                    <div class="col-6">
-  
-                      <a href="#" class="footer-widgets__link">
-                        آموزش جاوا اسکریپت
-                      </a>
-                    </div>
-                    <div class="col-6">
-  
-                      <a href="#" class="footer-widgets__link">
-                        آموزش بوت استرپ
-                      </a>
-                    </div>
-                    <div class="col-6">
-  
-                      <a href="#" class="footer-widgets__link">
-                        آموزش ریکت
-                      </a>
-                    </div>
-  
-                    <div class="col-6">
-  
-                      <a href="#" class="footer-widgets__link">
-                        آموزش پایتون
-                      </a>
-                    </div>
+                  <div class="col-6">
+                    <a href="#" class="footer-widgets__link">
+                      آموزش بوت استرپ
+                    </a>
+                  </div>
+                  <div class="col-6">
+                    <a href="#" class="footer-widgets__link"> آموزش ریکت </a>
+                  </div>
 
-                    <!-- newsletter  -->
-                     <div class="col-12"></div>
+                  <div class="col-6">
+                    <a href="#" class="footer-widgets__link"> آموزش پایتون </a>
+                  </div>
+
+                  <!-- newsletter  -->
+                  <div class="col-12"></div>
                   <span class="footer-widgets__title">اشتراک در خبرنامه</span>
                   <span class="footer-widgets__text text-center d-block"
                     >جهت اطلاع از آخرین اخبار و تخفیف های سایت مشترک شوید!</span
@@ -769,25 +844,28 @@
                       placeholder="ایمیل خود را وارد کنید."
                       id="news-letter-input"
                     />
-                    <button type="submit" class="footer-widgets__btn" id="news-letter-submit-btn">
+                    <button
+                      type="submit"
+                      class="footer-widgets__btn"
+                      id="news-letter-submit-btn"
+                    >
                       عضویت
                     </button>
                   </form>
                 </div>
-  
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-        </div> 
-        <div class="footer__copyright">
-          <span class="footer__copyright-text">
-            کلیه حقوق برای آکادمی آموزش برنامه نویسی سبز لرن محفوظ است.
-          </span>
         </div>
-      </footer>
+      </div>
+
+      <div class="footer__copyright">
+        <span class="footer__copyright-text">
+          کلیه حقوق برای آکادمی آموزش برنامه نویسی سبز لرن محفوظ است.
+        </span>
+      </div>
+    </footer>
+
     <script src="vendor/FontAwsome/all.min.js"></script>
     <script src="vendor/Bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/shared.js" type="module"></script>
