@@ -179,7 +179,6 @@ window.addEventListener("load", () => {
     const paginationWrapper = document.querySelector(
       ".courses__pagination-list"
     );
-    console.log();
     const currentPage = getUrlParam("page");
     const showPaginatedCourses = paginatedItems(
       [...responseCourses],

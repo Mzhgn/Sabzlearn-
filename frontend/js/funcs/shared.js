@@ -375,7 +375,11 @@ const getCategoryCourses = async () => {
   return courses;
 };
 
-const inserCategoryHtmlTemplate = (courses, showType, parentElement) => {
+const inserCategoryHtmlTemplate = (
+  courses,
+  showType = "row",
+  parentElement
+) => {
   parentElement.innerHTML = "";
 
   if (showType === "row") {
@@ -1058,6 +1062,27 @@ const recordComments = async () => {
     showSwal("نظر شما با موفقیت ثبت شد", "success", "خیلی عالی", () => {});
   }
 };
+const showWholeCourses = async () => {
+  const coursesWrapperEl = document.querySelector("#courses-wrapper");
+  const res = await fetch(`http://127.0.0.1:4000/v1/courses`);
+  const courses = await res.json();
+
+  return courses;
+};
+// const redirectToAllCourses = () => {
+//   window.location.href = "allcourses.html";
+// };
+// const allCoursesBtn = document.querySelector(".courses-header__link");
+
+// allCoursesBtn.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   redirectToAllCourses();
+//   console.log("clicked");
+//   // showWholeCourses(courses).then((courses) => {
+//   //   console.log(courses);
+//   // });
+// });
+
 export {
   showUserNameNavbar,
   renderTopbarMenu,
@@ -1076,4 +1101,5 @@ export {
   createNewsletter,
   globalSearch,
   recordComments,
+  showWholeCourses,
 };
