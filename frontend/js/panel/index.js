@@ -6,19 +6,18 @@ import {
 
 window.notificationSeen = notificationSeen;
 
-const $ = document;
-
 window.addEventListener("load", () => {
-  const adminNameEl = $.querySelector("#admin-name");
-  const notificationEl = $.querySelector("#notifications-icon");
-  const notificationModalEl = $.querySelector(".home-notification-modal");
-
+  const adminNameEl = document.querySelector("#admin-name");
+  const notificationEl = document.querySelector("#notifications-icon");
+  const notificationModalEl = document.querySelector(
+    ".home-notification-modal"
+  );
   getAdminInfo().then((data) => {
     // protect Cms route
     if (data.role === "ADMIN") {
       // show admin name on page
       console.log(data);
-      adminNameEl.innerHTML = data.name;
+      adminWelcomeNameEl.innerHTML = data.name;
     } else {
       location.replace("../../login.html");
     }
