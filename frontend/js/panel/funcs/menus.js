@@ -4,6 +4,7 @@ let parentMenuID = undefined;
 
 const showAllMenus = async () => {
   const menusWrapperEl = document.querySelector(".table tbody");
+  menusWrapperEl.innerHTML = "";
 
   const res = await fetch(`http://127.0.0.1:4000/v1/menus/all`);
   const menus = await res.json();
@@ -103,6 +104,7 @@ const removeMenu = async (menuID) => {
             "  عالیه",
             () => {
               showAllMenus();
+              // console.log("removed");
             }
           );
         }
