@@ -17,7 +17,6 @@ window.addEventListener("load", () => {
     // protect Cms route
     if (data.role === "ADMIN") {
       // show admin name on page
-      console.log(data);
       adminNameEl.innerHTML = data.name;
     } else {
       location.replace("../../login.html");

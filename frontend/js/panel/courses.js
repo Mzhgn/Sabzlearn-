@@ -1,7 +1,20 @@
-import { getAllCourses } from "./funcs/courses.js";
+import {
+  getAllCourses,
+  createNewCourse,
+  prepareCreateCourseForm,
+  removeCourse,
+} from "./funcs/courses.js";
+
+window.removeCourse = removeCourse;
 
 window.addEventListener("load", () => {
-  getAllCourses().then((data) => {
-    console.log(data);
+  getAllCourses();
+  prepareCreateCourseForm();
+
+  const createCourseBtn = document.querySelector("#create-course-btn");
+
+  createCourseBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    createNewCourse();
   });
 });

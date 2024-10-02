@@ -8,6 +8,8 @@ window.notificationSeen = notificationSeen;
 
 window.addEventListener("load", () => {
   const adminNameEl = document.querySelector("#admin-name");
+  const adminWelcomeNameEl = document.querySelector("#admin-welcome-name");
+
   const notificationEl = document.querySelector("#notifications-icon");
   const notificationModalEl = document.querySelector(
     ".home-notification-modal"
@@ -16,7 +18,7 @@ window.addEventListener("load", () => {
     // protect Cms route
     if (data.role === "ADMIN") {
       // show admin name on page
-      console.log(data);
+      adminNameEl.innerHTML = data.name;
       adminWelcomeNameEl.innerHTML = data.name;
     } else {
       location.replace("../../login.html");
@@ -29,7 +31,6 @@ window.addEventListener("load", () => {
 
     notificationModalEl.addEventListener("mouseleave", () => {
       notificationModalEl.classList.remove("active-modal-notfication");
-      console.log("hi");
     });
 
     insertNotificationBody(data.notifications);

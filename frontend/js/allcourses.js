@@ -3,7 +3,7 @@ import { paginatedItems, getUrlParam, addParamToUrl } from "./funcs/utils.js";
 
 window.addParamToUrl = addParamToUrl;
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   showWholeCourses().then((courses) => {
     console.log("the log of courses", courses);
     const coursesWrapperEl = document.querySelector("#courses-wrapper");
