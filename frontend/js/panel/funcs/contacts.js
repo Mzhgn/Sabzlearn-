@@ -1,3 +1,5 @@
+import { showSwal, getToken } from "../../funcs/utils.js";
+
 const showAllContacts = async () => {
   const contactsListTableEl = document.querySelector(".table tbody");
   contactsListTableEl.innerHTML = "";
@@ -38,4 +40,8 @@ const showAllContacts = async () => {
   });
 };
 
-export { showAllContacts };
+const showContactBody = (body) => {
+  showSwal(body, undefined, "مشاهده کردم", () => {});
+};
+
+export { showAllContacts, showContactBody };

@@ -1,4 +1,6 @@
-import { showAllContacts } from "./funcs/contacts.js";
+import { showAllContacts, showContactBody } from "./funcs/contacts.js";
+
+window.showContactBody = showContactBody;
 
 window.addEventListener("load", () => {
   showAllContacts();
