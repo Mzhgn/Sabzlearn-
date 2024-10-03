@@ -79,8 +79,8 @@ const createNewSession = async () => {
     );
   }
 
-  console.log(result);
-  console.log(res);
+  // console.log(result);
+  // console.log(res);
 };
 
 const showAllSessions = async () => {
@@ -104,7 +104,9 @@ const showAllSessions = async () => {
                     <button type='button' class='btn btn-primary edit-btn'>ویرایش</button>
                 </td>
                 <td>
-                    <button type='button' class='btn btn-danger delete-btn'>حذف</button>
+                    <button type='button' class='btn btn-danger delete-btn'  onclick=removeSession('${
+                      session._id
+                    }')>حذف</button>
                 </td>
             </tr>
         `
@@ -112,4 +114,41 @@ const showAllSessions = async () => {
   });
 };
 
-export { showAllSessions, prepareCreateNewSessionForm, createNewSession };
+const removeSession = async (sessionID) => {
+  showSwal(
+    "آیا از حذف جلسه اطمینان دارید؟",
+    "warning",
+    ["خیر", "بله"],
+    async (result) => {
+      if (result) {
+        const res = await fetch(
+          `http://localhost:4000/v1/courses/sessions/${sessionID}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
+
+        if (res.ok) {
+          showSwal(
+            "جلسه مورد نظر با موفقیت حذف شد",
+            "success",
+            "خیلی هم عالی",
+            () => {
+              showAllSessions();
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
+export {
+  showAllSessions,
+  prepareCreateNewSessionForm,
+  createNewSession,
+  removeSession,
+};

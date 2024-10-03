@@ -2,7 +2,10 @@ import {
   showAllSessions,
   prepareCreateNewSessionForm,
   createNewSession,
+  removeSession,
 } from "./funcs/sessions.js";
+
+window.removeSession = removeSession;
 
 window.addEventListener("load", () => {
   const createSessionBtn = document.querySelector("#create-session");
@@ -11,6 +14,8 @@ window.addEventListener("load", () => {
   prepareCreateNewSessionForm();
 
   createSessionBtn.addEventListener("click", (e) => {
+    console.log("logged");
+
     e.preventDefault();
     createNewSession();
   });
