@@ -44,4 +44,39 @@ const showContactBody = (body) => {
   showSwal(body, undefined, "مشاهده کردم", () => {});
 };
 
-export { showAllContacts, showContactBody };
+const answerToContact = async (userEmail) => {
+  swal({
+    title: "متن پاسخ را تایپ کنید:",
+    content: "input",
+    button: "ثبت پاسخ",
+  }).then(async (result) => {
+    if (result) {
+      const contactAnswerInfo = {
+        email: userEmail,
+        answer: result,
+      };
+
+      const res = await fetch(`http://127.0.0.1:4000/v1/contact/answer`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactAnswerInfo),
+      });
+
+      if (res.ok) {
+        showSwal(
+          "پاسخ مورد نظر برای کاربر ایمیل شد",
+          "success",
+          "خیلی هم عالی",
+          () => {
+            showAllContacts();
+          }
+        );
+      }
+    }
+  });
+};
+
+export { showAllContacts, showContactBody, answerToContact };

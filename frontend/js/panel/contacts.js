@@ -1,4 +1,8 @@
-import { showAllContacts, showContactBody } from "./funcs/contacts.js";
+import {
+  showAllContacts,
+  showContactBody,
+  answerToContact,
+} from "./funcs/contacts.js";
 
 window.showContactBody = showContactBody;
 
