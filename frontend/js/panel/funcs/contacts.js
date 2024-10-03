@@ -79,4 +79,36 @@ const answerToContact = async (userEmail) => {
   });
 };
 
-export { showAllContacts, showContactBody, answerToContact };
+const removeContact = async (contactID) => {
+  showSwal(
+    "آیا از حذف پیغام اطمینان دارید؟",
+    "warning",
+    ["خیر", "بله"],
+    async (result) => {
+      if (result) {
+        const res = await fetch(
+          `http://127.0.0.1:4000/v1/contact/${contactID}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
+        console.log(res);
+        if (res.ok) {
+          showSwal(
+            "پیغام مورد نظر با موفقیت حذف شد",
+            "success",
+            " عالیه ",
+            () => {
+              showAllContacts();
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
+export { showAllContacts, showContactBody, answerToContact, removeContact };
