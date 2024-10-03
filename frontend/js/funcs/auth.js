@@ -45,7 +45,15 @@ const register = () => {
           "تصحیح اطلاعات",
           () => {}
         );
+      } else if (res.status === 403) {
+        showSwal(
+          "متاسفانه این شماره مجاز به ثبت نام نیست",
+          "error",
+          "تصحیح اطلاعات",
+          () => {}
+        );
       }
+
       return res.json();
     })
     .then((result) => {
