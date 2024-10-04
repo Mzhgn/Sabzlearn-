@@ -1,4 +1,4 @@
-import { getToken } from "./../../funcs/utils.js";
+import { getToken, showSwal } from "./../../funcs/utils.js";
 
 let articleBodyEditor = null;
 let articleCover = null;
@@ -38,10 +38,9 @@ const prepareNewArticleForm = async () => {
   );
 
   //   Handle Cover Uploader
-  articleCoverFileUploader.addEventListener(
-    "change",
-    (event) => (articleCover = event.target.files[0])
-  );
+  articleCoverFileUploader.addEventListener("change", (event) => {
+    articleCover = event.target.files[0];
+  });
 };
 // NEW FUNCTION
 
@@ -59,7 +58,7 @@ const createNewArticle = async () => {
   formData.append("categoryID", articleCategoryID);
   formData.append("cover", articleCover);
 
-  const res = await fetch(`http://localhost:4000/v1/articles`, {
+  const res = await fetch(`http://127.0.0.1:4000/v1/articles`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -72,8 +71,9 @@ const createNewArticle = async () => {
   console.log(result);
 
   if (res.ok) {
-    showSwal("مقاله جدید با موفقیت ایجاد شد", "success", "خیلی هم عالی", () => {
-      getAndShowAllArticles();
+    showSwal("مقاله جدید با موفقیت ایجاد شد", "success", " عالیه", () => {
+      showAllArticles();
+      console.log("logged article");
     });
   }
 };
@@ -106,7 +106,9 @@ const showAllArticles = async () => {
                     <button type="button" class="btn btn-primary" id="edit-btn">ویرایش</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger" id="delete-btn">حذف</button>
+                    <button type="button" class="btn btn-danger" id="delete-btn"   onclick=removeArticle('${
+                      article._id
+                    }')>حذف</button>
                 </td>
             </tr>
         `
@@ -114,4 +116,42 @@ const showAllArticles = async () => {
   });
 };
 
-export { showAllArticles, prepareNewArticleForm, createNewArticle };
+// New fun
+const removeArticle = async (articleID) => {
+  showSwal(
+    "آیا از حذف مقاله اطمینان دارید؟",
+    "warning",
+    ["نه", "آره"],
+    async (result) => {
+      if (result) {
+        const res = await fetch(
+          `http://127.0.0.1:4000/v1/articles/${articleID}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
+
+        if (res.ok) {
+          showSwal(
+            "مقاله مورد نظر با موفقیت حذف شد",
+            "success",
+            "خیلی هم عالی",
+            () => {
+              showAllArticles();
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
+export {
+  showAllArticles,
+  prepareNewArticleForm,
+  createNewArticle,
+  removeArticle,
+};

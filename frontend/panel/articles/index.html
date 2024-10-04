@@ -129,14 +129,14 @@
                   <label class="input-title" style="display: block"
                     >عنوان</label
                   >
-                  <input type="text" />
+                  <input type="text" id="title" />
                   <span class="error-message text-danger"></span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="name input">
                   <label class="input-title" style="display: block">لینک</label>
-                  <input type="text" />
+                  <input type="text" id="shortName" />
                   <span class="error-message text-danger"></span>
                 </div>
               </div>
@@ -145,7 +145,10 @@
                   <label class="input-title" style="display: block"
                     >چکیده</label
                   >
-                  <textarea style="width: 100%; height: 200px"></textarea>
+                  <textarea
+                    style="width: 100%; height: 200px"
+                    id="description"
+                  ></textarea>
                   <span class="error-message text-danger"></span>
                 </div>
               </div>
@@ -161,7 +164,7 @@
               <div class="col-6">
                 <div class="name input">
                   <label class="input-title" style="display: block">کاور</label>
-                  <input type="file" />
+                  <input type="file" id="file" />
                   <span class="error-message text-danger"></span>
                 </div>
               </div>
@@ -179,7 +182,12 @@
               <div class="col-12">
                 <div class="bottom-form">
                   <div class="submit-btn">
-                    <input type="submit" value="افزودن" />
+                    <input type="submit" value="انتشار" id="create-article" />
+                    <input
+                      type="submit"
+                      value="پیش‌ نویس"
+                      id="create-article"
+                    />
                   </div>
                 </div>
               </div>
@@ -219,6 +227,7 @@
     <script src="vendor/FontAwesome/FontAwesome.min.js"></script>
     <script src="vendor/swiperSlider/swiper.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    <script src="../../vendor/Sweetalert/sweetalert.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/script.js"></script>
     <script src="../../js/panel/articles.js" type="module"></script>
