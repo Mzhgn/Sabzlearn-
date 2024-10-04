@@ -40,7 +40,9 @@ const showAllComments = async () => {
                     }')" class='btn btn-primary edit-btn'>رد</button>
                 </td>
                 <td>
-                    <button type='button' class='btn btn-danger delete-btn'>حذف</button>
+                    <button type='button' class='btn btn-danger delete-btn'   onclick="removeComment('${
+                      comment._id
+                    }')" >حذف</button>
                 </td>
             </tr>
         `
@@ -148,10 +150,44 @@ const answerToComment = async (commentID) => {
   });
 };
 
+const removeComment = async (commentID) => {
+  showSwal(
+    "آیا از حذف کامنت اطمینان دارید؟",
+    "warning",
+    ["نه", "آره"],
+    async (result) => {
+      console.log(result);
+      if (result) {
+        const res = await fetch(
+          `http://127.0.0.1:4000/v1/comments/${commentID}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
+
+        if (res.ok) {
+          showSwal(
+            "کامنت مورد نظر با موفقیت حذف شد",
+            "success",
+            "خیلی هم عالی",
+            () => {
+              showAllComments();
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
 export {
   showAllComments,
   showCommentBody,
   acceptComment,
   rejectComment,
   answerToComment,
+  removeComment,
 };
