@@ -48,4 +48,110 @@ const showAllComments = async () => {
   });
 };
 
-export { showAllComments };
+const showCommentBody = (commentBody) => {
+  showSwal(commentBody, undefined, "دیدم", () => {});
+};
+
+const acceptComment = async (commentID) => {
+  showSwal(
+    "آیا از تایید کامنت اطمینان دارید؟",
+    "warning",
+    ["نه", "آره"],
+    async (result) => {
+      if (result) {
+        const res = await fetch(
+          `http://localhost:4000/v1/comments/accept/${commentID}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
+
+        console.log(res);
+
+        if (res.ok) {
+          showSwal(
+            "کامنت مورد نظر با موفقیت تایید شد",
+            "success",
+            "خیلی هم عالی",
+            () => {
+              showAllComments();
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
+const rejectComment = async (commentID) => {
+  showSwal(
+    "آیا از رد کامنت اطمینان دارید؟",
+    "warning",
+    ["نه", "آره"],
+    async (result) => {
+      if (result) {
+        const res = await fetch(
+          `http://localhost:4000/v1/comments/reject/${commentID}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          }
+        );
+
+        if (res.ok) {
+          showSwal(
+            "کامنت مورد نظر با موفقیت رد شد",
+            "success",
+            "خیلی هم عالی",
+            () => {
+              showAllComments();
+            }
+          );
+        }
+      }
+    }
+  );
+};
+
+const answerToComment = async (commentID) => {
+  swal({
+    title: "متن پاسخ را وارد نمایید:",
+    content: "input",
+    buttons: "ثبت پاسخ",
+  }).then((body) => {
+    if (body) {
+      fetch(`http://127.0.0.1:4000/v1/comments/answer/${commentID}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ body }),
+      }).then((res) => {
+        if (res.ok) {
+          showSwal(
+            "پاسخ مورد نظر با موفقیت ثبت شد",
+            "success",
+            "خیلی هم عالی",
+            () => {
+              showAllComments();
+            }
+          );
+        }
+      });
+    }
+  });
+};
+
+export {
+  showAllComments,
+  showCommentBody,
+  acceptComment,
+  rejectComment,
+  answerToComment,
+};
