@@ -14,16 +14,16 @@ const landingMinutesCount = $.querySelector("#courses-minutes");
 const usersCount = $.querySelector("#users-count");
 const globalSearchBtn = $.querySelector("#search-btn");
 const globalSearchInput = $.querySelector("#search-input");
+const userEmailEl = $.querySelector("#user-email");
+const userPhoneEl = $.querySelector("#user-phone");
 
 window.addEventListener("load", () => {
   let landingText = "ما به هر قیمتی دوره آموزشی تولید نمیکنیم!";
   let typingIndex = 0;
 
   typeWriter(landingText, typingIndex);
-  counting(40, landingCoursesCount);
-  counting(520, landingMinutesCount);
-  counting(3251, usersCount);
 
+  generalIndexInfo();
   getAllCourses();
   getPopularCourses();
   getPresellCourses();
@@ -62,3 +62,23 @@ function counting(max, el) {
     counter++;
   }, 1);
 }
+
+const generalIndexInfo = async () => {
+  const res = await fetch(`http://localhost:4000/v1/infos/index`);
+  const results = await res.json();
+
+  console.log(res);
+  console.log(results);
+
+  userEmailEl.innerHTML = `${results.email}`;
+  userPhoneEl.innerHTML = `${results.phone}`;
+  let userCountMax = Number(`${results.usersCount}`);
+  let courseCountMax = Number(`${results.coursesCount}`);
+  let minutesCountMax = Number(`${results.totalTime}`);
+
+  console.log(userCountMax);
+
+  counting(userCountMax, usersCount);
+  counting(courseCountMax, landingCoursesCount);
+  counting(minutesCountMax, landingMinutesCount);
+};

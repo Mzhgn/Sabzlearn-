@@ -27,6 +27,11 @@ const showAllUsers = async () => {
                     <button type='button' class='btn btn-primary edit-btn'>ویرایش</button>
                 </td>
                 <td>
+                    <button type='button' class='btn btn-primary edit-btn' onclick="changeRole('${
+                      user._id
+                    }')">تغییر نقش</button>
+                </td>
+                <td>
                     <button type='button' class='btn btn-danger delete-btn'>حذف</button>
                 </td>
                 <td>
@@ -38,8 +43,6 @@ const showAllUsers = async () => {
         `
     );
   });
-
-  console.log(users);
 };
 const removeUser = async (userID) => {
   showSwal(
@@ -151,4 +154,46 @@ const createNewUser = async () => {
   });
 };
 
-export { showAllUsers, removeUser, banUser, createNewUser };
+const changeRole = async (userID) => {
+  showSwal(
+    "آیا از تغییر نقش اطمینان دارید؟",
+    "warning",
+    ["خیر", "بله"],
+    async (result) => {
+      if (result) {
+        swal({
+          title: "نقش جدید را وارد نمایید:",
+          content: "input",
+          button: "تغییر نقش",
+        }).then((newRole) => {
+          const userNewRoleInfo = {
+            role: newRole,
+            id: userID,
+          };
+
+          fetch(`http://127.0.0.1:4000/v1/users/role`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${getToken()}`,
+            },
+            body: JSON.stringify(userNewRoleInfo),
+          }).then((res) => {
+            if (res.ok) {
+              showSwal(
+                "نقش کاربر مورد نظر با موفقیت تغییر یافت",
+                "success",
+                "خیلی هم عالی",
+                () => {
+                  showAllUsers();
+                }
+              );
+            }
+          });
+        });
+      }
+    }
+  );
+};
+
+export { showAllUsers, removeUser, banUser, createNewUser, changeRole };
