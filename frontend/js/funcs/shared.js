@@ -578,12 +578,57 @@ const getCourseDetails = () => {
       courseTiteEl.innerHTML = course.name;
       courseTextEl.innerHTML = course.description;
       courseCategoryEl.innerHTML = course.categoryID.title;
-      courseRegisterStatusEl.insertAdjacentHTML(
-        "beforeend",
-        course.isUserRegisteredToThisCourse
-          ? "دانشجو دوره هستید"
-          : "ثبت نام در دوره"
-      );
+
+      if (course.isUserRegisteredToThisCourse) {
+        courseRegisterStatusEl.insertAdjacentHTML(
+          "beforeend",
+          `دانشجوی دوره هستید`
+        );
+      } else {
+        courseRegisterStatusEl.insertAdjacentHTML(
+          "beforeend",
+          `ثبت نام در دوره`
+        );
+
+        courseRegisterStatusEl.addEventListener("click", (event) => {
+          event.preventDefault();
+
+          if (course.price == 0) {
+            showSwal(
+              "آیا از ثبت نام در دوره اطمینان دارید؟",
+              "success",
+              ["خیر", "بله"],
+              async (result) => {
+                if (result) {
+                  const res = await fetch(
+                    `http://127.0.0.1:4000/v1/courses/${course._id}/register`,
+                    {
+                      method: "POST",
+                      headers: {
+                        Authorization: `Bearer ${getToken()}`,
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ price: 0 }),
+                    }
+                  );
+
+                  if (res.ok) {
+                    showSwal(
+                      "با موفقیت در دوره ثبت نام شدید",
+                      "success",
+                      "هورررراااا",
+                      () => {
+                        location.reload();
+                      }
+                    );
+                  }
+                }
+              }
+            );
+          }
+        });
+      }
+
       courseStatusEl.innerHTML = course.isComplete
         ? "تکمیل شده"
         : "در حال برگزاری";
