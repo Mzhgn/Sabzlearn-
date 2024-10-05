@@ -625,6 +625,110 @@ const getCourseDetails = () => {
                 }
               }
             );
+          } else {
+            showSwal(
+              "آیا از ثبت نام در دوره اطمینان دارید؟",
+              "success",
+              ["خیر", "بله"],
+              async (result) => {
+                if (result) {
+                  showSwal(
+                    "آیا کد تخفیف دارید؟",
+                    "warning",
+                    ["خیر", "بله"],
+                    async (result) => {
+                      if (result) {
+                        swal({
+                          title: "کد تخفیف را وارد نمایید:",
+                          content: "input",
+                          button: "اعمال تخفیف",
+                        }).then((code) => {
+                          fetch(`http://127.0.0.1:4000/v1/offs/${code}`, {
+                            method: "POST",
+                            headers: {
+                              Authorization: `Bearer ${getToken()}`,
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ course: course._id }),
+                          })
+                            .then((res) => {
+                              if (res.status === 404) {
+                                showSwal(
+                                  "کد تخفیف معتبر نمی‌باشد",
+                                  "error",
+                                  "ای بابا",
+                                  () => {}
+                                );
+                              } else if (res.status === 409) {
+                                showSwal(
+                                  "مهلت استفاده از کد تخفیف به اتمام رسیده",
+                                  "error",
+                                  "ای بابا",
+                                  () => {}
+                                );
+                              }
+                              return res.json();
+                            })
+                            .then((code) => {
+                              console.log(code);
+
+                              fetch(
+                                `http://localhost:4000/v1/courses/${course._id}/register`,
+                                {
+                                  method: "POST",
+                                  headers: {
+                                    Authorization: `Bearer ${getToken()}`,
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({
+                                    price:
+                                      course.price -
+                                      (course.price * code.percent) / 100,
+                                  }),
+                                }
+                              ).then((res) => {
+                                if (res.ok) {
+                                  showSwal(
+                                    "با موفقیت در دوره ثبت نام شدید",
+                                    "success",
+                                    "هورررراااا",
+                                    () => {
+                                      location.reload();
+                                    }
+                                  );
+                                }
+                              });
+                            });
+                        });
+                      } else {
+                        const res = await fetch(
+                          `http://localhost:4000/v1/courses/${course._id}/register`,
+                          {
+                            method: "POST",
+                            headers: {
+                              Authorization: `Bearer ${getToken()}`,
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ price: course.price }),
+                          }
+                        );
+
+                        if (res.ok) {
+                          showSwal(
+                            "با موفقیت در دوره ثبت نام شدید",
+                            "success",
+                            "هورررراااا",
+                            () => {
+                              location.reload();
+                            }
+                          );
+                        }
+                      }
+                    }
+                  );
+                }
+              }
+            );
           }
         });
       }
