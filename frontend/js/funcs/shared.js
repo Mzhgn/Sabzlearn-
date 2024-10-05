@@ -43,6 +43,7 @@ const getAllCourses = async () => {
     coursesContainer.insertAdjacentHTML(
       "beforeend",
       ` <div class="col-4">
+          <div class="course-box">
                    <a href="course.html?name=${course.shortName}">
                     <img
                       src=http://127.0.0.1:4000/courses/covers/${course.cover}
@@ -93,11 +94,22 @@ const getAllCourses = async () => {
                           course.registers
                         }</span>
                       </div>
-                      <span class="course-box__price">${
+
+                      
+                      <div class="course-box__price">${
                         course.price === 0
                           ? "رایگان"
-                          : course.price.toLocaleString()
-                      }</span>
+                          : course.price !== 0 &&
+                            course.discount &&
+                            `
+                            <span class="courses-box__price-discount">${(
+                              course.price -
+                              (course.price * course.discount) / 100
+                            ).toLocaleString()}</span>
+                            <span class="courses-box__price courses-box__undiscount">${course.price.toLocaleString()}</span>
+                          `
+                      }</div>
+
                     </div>
                   </div>
 
@@ -107,6 +119,15 @@ const getAllCourses = async () => {
                       <i class="fas fa-arrow-left course-box__footer-icon"></i
                     ></a>
                   </div>
+                  
+                      ${
+                        course.discount
+                          ? `
+                      <span class="courses-box__discount">${course.discount}%</span>
+                    `
+                          : ``
+                      }
+                  
                 </div>
               </div>`
     );

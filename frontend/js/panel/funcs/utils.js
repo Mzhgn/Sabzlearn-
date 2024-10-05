@@ -13,4 +13,9 @@ const getAdminInfo = async () => {
   return admin;
 };
 
-export { getAdminInfo };
+const logout = () => {
+  localStorage.removeItem("user");
+  return true;
+};
+
+export { getAdminInfo, logout };
