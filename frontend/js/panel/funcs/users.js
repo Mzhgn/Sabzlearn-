@@ -196,4 +196,47 @@ const changeRole = async (userID) => {
   );
 };
 
-export { showAllUsers, removeUser, banUser, createNewUser, changeRole };
+const updateUser = async () => {
+  const nameInputEl = document.querySelector("#name");
+  const usernameInputEl = document.querySelector("#username");
+  const emailInputEl = document.querySelector("#email");
+  const phoneInputEl = document.querySelector("#phone");
+  const passwordInputEl = document.querySelector("#password");
+
+  const userNewInfo = {
+    name: nameInputEl.value.trim(),
+    username: usernameInputEl.value.trim(),
+    email: emailInputEl.value.trim(),
+    phone: phoneInputEl.value.trim(),
+    password: passwordInputEl.value.trim(),
+  };
+
+  const res = await fetch(`http://localhost:4000/v1/users/`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userNewInfo),
+  });
+
+  if (res.ok) {
+    showSwal(
+      "اطلاعات شما با موفقیت آپدیت شد",
+      "success",
+      "خیلی هم عالی",
+      () => {
+        location.href = "../main/index.html";
+      }
+    );
+  }
+};
+
+export {
+  showAllUsers,
+  removeUser,
+  banUser,
+  createNewUser,
+  changeRole,
+  updateUser,
+};
