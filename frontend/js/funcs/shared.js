@@ -7,7 +7,7 @@ const showUserNameNavbar = () => {
   const isUserLogin = isLogin();
   if (isUserLogin) {
     const userInfo = getMe().then((data) => {
-      navbarNameBox.setAttribute("href", "index.html");
+      navbarNameBox.setAttribute("href", "my-account/Account/");
       navbarNameBox.innerHTML = ` <span class="main-header__profile-text">${data.name}</span>`;
     });
   } else {
