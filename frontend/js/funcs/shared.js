@@ -1239,19 +1239,6 @@ const showWholeCourses = async () => {
 
   return courses;
 };
-// const redirectToAllCourses = () => {
-//   window.location.href = "allcourses.html";
-// };
-// const allCoursesBtn = document.querySelector(".courses-header__link");
-
-// allCoursesBtn.addEventListener("click", (event) => {
-//   event.preventDefault();
-//   redirectToAllCourses();
-//   console.log("clicked");
-//   // showWholeCourses(courses).then((courses) => {
-//   //   console.log(courses);
-//   // });
-// });
 
 export {
   showUserNameNavbar,

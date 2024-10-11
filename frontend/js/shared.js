@@ -1,4 +1,3 @@
-import { getMe } from "./funcs/auth.js";
 import {
   showUserNameNavbar,
   renderTopbarMenu,

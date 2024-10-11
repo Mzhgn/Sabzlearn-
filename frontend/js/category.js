@@ -27,18 +27,21 @@ window.addEventListener("load", () => {
     );
     const courseSearchInput = document.querySelector(".courses-top-bar__input");
     // show category courses row/column
+
+    console.log("Courses ->", courses);
+
     if (courses.length) {
       inserCategoryHtmlTemplate(courses, coursesShowType, categoryWrapper);
     } else {
-      console.log(courses.length);
-      console.log(typeof courses.length);
-      console.log(categoryWrapper.innerHTML);
+      console.log("No Courses");
+      console.log("categoryWrapper ->", categoryWrapper);
+
+      // console.log(courses.length);
+      // console.log(typeof courses.length);
+      // console.log(categoryWrapper.innerHTML);
       categoryWrapper.insertAdjacentHTML(
         "beforeend",
-        `
-                  <div class="alert alert-danger">هیچ دوره‌ای برای این دسته بندی وجود ندارد :/</div>
-
-            `
+        `<div class="alert alert-danger">هیچ دوره‌ای برای این دسته بندی وجود ندارد </div> `
       );
     }
 
